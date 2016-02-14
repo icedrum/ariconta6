@@ -1,14 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
+            <div class="login-panel panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Identificacion
+                    <h3 class="panel-title">Ariconta 6.0
                     </h3>
                 </div>
-                <div class="panel-body" >
+                <div class="panel-body " >
                     <form role="form">
                         <fieldset>
+
                             <div class="form-group">
                                 <!--<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus> -->
                                 <input class="form-control" placeholder="Login" ng-model="data.login"
@@ -19,16 +20,21 @@
                             </div>
                             <div class="checkbox">
                                 <label style="color: red">
-                                    {{resultado}}
+                                    <strong>{{resultado}}</strong>
                                 </label>
                             </div>
 
                             
                             
-                            <button ng-click="ComprobarLogin()" class="btn btn-lg btn-success btn-block">Entrar</button>
+                            <button ng-click="ComprobarLogin()" class="btn btn-lg btn-primary btn-block">Entrar</button>
                             </div>
                         </fieldset>
                     </form>
+                 
+                        <img src="/views/img/logo_ARIADNA_peq.png" alt="Ariadna SW"   height="90" width="230"/>
+                 </div>
+                <div class="panel-footer">
+                            
                 </div>
             </div>
         </div>

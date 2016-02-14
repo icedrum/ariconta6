@@ -28,11 +28,7 @@ myApp2.controller('LoginCtr', ['$scope','$http', '$cookieStore', function($scope
                 
 
 
-                //Esto habra que quitarlo
-                $cookieStore.put("Usuario", 'David desde cooke');
-                window.open('index.html#/dashboard/home', '_self');     
-                return;  
-/*
+
                 $http.get(url).
                  success(function(data1) {
                     $scope.UsuBD= data1;
@@ -63,7 +59,7 @@ myApp2.controller('LoginCtr', ['$scope','$http', '$cookieStore', function($scope
 
 
                  });    
-  */              
+                
            $http.get(url)
             .success(function (data1, status, headers, config) {
         
