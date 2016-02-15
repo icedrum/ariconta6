@@ -25,7 +25,7 @@ angular.module('sbAdminApp')
 		series: ['Series A', 'Series B'],
 
 		data: [
-		   [65, 59, 80, 81, 56, 55, 40],
+		   [65, 59, 80, 12, 12, 12, 12],
 		   [28, 48, 40, 19, 86, 27, 90]
 		]
     	

@@ -26,6 +26,7 @@ angular
     $stateProvider
       .state('dashboard', {
         url:'/dashboard',
+        controller: 'dashboardCtrl',
         templateUrl: 'views/dashboard/main.html',
         resolve: {
             loadMyDirectives:function($ocLazyLoad){
@@ -36,7 +37,7 @@ angular
                     'scripts/directives/header/header.js',
                     'scripts/directives/header/header-notification/header-notification.js',
                     'scripts/directives/sidebar/sidebar.js',
-                    'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
+                    'scripts/controllers/dashboardCtrl.js'
                     ]
                 }),
                 $ocLazyLoad.load(
@@ -71,6 +72,9 @@ angular
                   name:'ngTouch',
                   files:['bower_components/angular-touch/angular-touch.js']
                 })
+
+
+
             }
         }
     })
@@ -89,7 +93,15 @@ angular
               'scripts/directives/chat/chat.js',
               'scripts/directives/dashboard/stats/stats.js'
               ]
+            }),
+            $ocLazyLoad.load({
+              name:'chart.js',
+              files:[
+                'bower_components/angular-chart.js/dist/angular-chart.min.js',
+                'bower_components/angular-chart.js/dist/angular-chart.css'
+              ]
             })
+
           }
         }
       })

@@ -1,20 +1,45 @@
 <div>
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Empresa Pruebas S.L.</h1>
+            <h1 class="page-header">Empresa Pruebas S.L.  {{prueba}}</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
     <div class="row">
         
-        <stats number="6" comments="New comments!" colour="primary" type="comments"></stats>
-        <stats number="12" comments="New tasks!" colour="primary" type="user"></stats>
-        <stats number="18" comments="New orders!" colour="yellow" type="shopping-cart"></stats>
-        <stats number="24" comments="Support tickets!" colour="red" type="support"></stats>
+        <stats number="0" comments="Mensajes!" colour="primary" type="comments"></stats>
+         <stats number="18" comments="Cobros vencidos!" colour="yellow" type="shopping-cart"></stats>
+        <stats number="2" comments="Control errores" colour="red" type="support"></stats>
 
     </div>
     
+
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-12" id="line-chart">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Ventas / Compras</div>
+                    <div class="panel-body">
+                        <canvas id="line" class="chart chart-line chart-xl" data="line.data" labels="line.labels" legend="true"
+                        click="line.onClick" series="line.series"></canvas>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-12" id="bar-chart">
+        <div class="panel panel-default">
+            <div class="panel-heading">Evolucion</div>
+            <div class="panel-body">
+                <canvas id="bar" class="chart chart-bar" data="bar.data" labels="bar.labels" series="bar.series"
+                options="bar.options"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- /.panel -->
     <div class="row">
 
