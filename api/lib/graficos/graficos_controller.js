@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var graficosMySql = require('./graficos_mysql');
 
-router.get('/', function (req, res) {
+router.get('/ventas', function (req, res) {
     var query = req.query;
     if (query.codmacta==null) {
-            graficosMySql.FacturasMes( function (err, cobros) {
+            graficosMySql.FacturasMesCli( function (err, cobros) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -19,14 +19,25 @@ router.get('/', function (req, res) {
 
 });
 
-/*
+
+router.get('/compras', function (req, res) {
+    var query = req.query;
+    if (query.codmacta==null) {
+            graficosMySql.FacturasMesPro( function (err, cobros) {
+            if (err) {
+                return res.status(500).send(err.message);
+            }
+            if (cobros) {
+                res.json(cobros)
+            } else {
+                res.status(404).send('No se han encontrado cobros');
+            }
+        });
+    }
+
+});
 
 
-select month(fecfactu),sum(totbases) from 
-factpro where fecfactu>='2015-01-01' and fecfactu<='2015-12-31'
-group by 1
-
-*/
 
 
 

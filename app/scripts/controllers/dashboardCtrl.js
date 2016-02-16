@@ -9,11 +9,13 @@
 angular.module('sbAdminApp')
   .controller('dashboardCtrl', ['$scope', '$timeout','$http', function ($scope, $timeout,$http) {
     	
-    	$scope.prueba="Conta3";
+    	$scope.prueba="Conta32";
 
-    var etiquetasMes=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'];	
+    var etiquetasMes=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];	
 
-    $scope.dataGrafico1=[];
+	$scope.dataGraficoAux=[];     //Temporal
+	$scope.dataGraficoVentas=[];     //Ventas
+
     ObtenerDatosGraficos();
 
     $scope.line = {
@@ -55,19 +57,44 @@ angular.module('sbAdminApp')
     };
 
 
-
-
     function ObtenerDatosGraficos() {
+
+    	console.log('********');
+    	$scope.dataGrafico1=[];		
+    	LlamadaURL(true);
+    	
+   		if ($scope.dataGrafico1.length =0) LlamadaURL(true);
+
+
+
+
+
+
+    };
+
+
+
+    function LlamadaURL(A_Compras) {
         console.log("ObtenerDatosGraficos");
         var cad;
         
+        cad="compras";
+        if (!A_Compras) cad="ventas";
+        cad="graficos" + cad; 	
+
         UrlApiFinal(cad);
-        console.log(cad);
-        $http.get('http://localhost:9080/api/graficos').
+        
+        $http.get(cad).
         success(function(data) {
             $scope.dataGrafico1 = data;
+            console.log(data);
         });
+        console.log("De vuelta");
     };
+
+
+
+    
 
 
 }]);
