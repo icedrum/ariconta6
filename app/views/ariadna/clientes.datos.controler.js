@@ -32,9 +32,9 @@ myApp2.controller('ClientesDatosCtrl', ['$scope','$http', '$cookieStore', functi
         console.log("De cobros");
         var cad;
         cad="cobros"
-        UrlApiFinal(cad);
-        console.log(cad);
-        $http.get('http://localhost:9080/api/cobros').
+        cad=UrlApiFinal(cad);
+  
+        $http.get(cad).
         success(function(data) {
             $scope.ColPaises = data;
         });

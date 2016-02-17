@@ -41,5 +41,6 @@ function UrlApiFinal(UrlFinal){
     //eJEMPLO http://ocalhost:9080/api/cobros
     // LLEGARA DESDE DESPUES DE aPI/
     //UrlFinal='http://' + config.apiHost + ":" + config.apiPort + "/api/" + UrlFinal;
-    UrlFinal='http://192.168.1.129:8090/api/' + UrlFinal;
+    UrlFinal='http://localhost:9080/api/' + UrlFinal;
+    return UrlFinal;
 } 

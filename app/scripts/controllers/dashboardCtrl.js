@@ -13,8 +13,8 @@ angular.module('sbAdminApp')
 
     var etiquetasMes=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];	
 
-	$scope.dataGraficoAux=[];     //Temporal
 	$scope.dataGraficoVentas=[];     //Ventas
+    $scope.dataGraficoCompras=[];
 
     ObtenerDatosGraficos();
 
@@ -23,8 +23,8 @@ angular.module('sbAdminApp')
 	    labels: etiquetasMes,
 	    series: ['Ventas', 'Compras'],
 	    data: [
-	      [65, 59, 80, 81, 56, 55, 40],
-	      [28, 48, 40, 19, 86, 27, 90]
+	      $scope.dataGraficoVentas,
+	      $scope.dataGraficoCompras
 	    ],
 	    onClick: function (points, evt) {
 	      console.log(points, evt);
@@ -58,13 +58,26 @@ angular.module('sbAdminApp')
 
 
     function ObtenerDatosGraficos() {
+        var i;
+    	console.log('*******Preparamos multiarrya');
 
-    	console.log('********');
-    	$scope.dataGrafico1=[];		
-    	LlamadaURL(true);
     	
-   		if ($scope.dataGrafico1.length =0) LlamadaURL(true);
+   		for (var j=0;j<12;j++)
+        {
+            $scope.dataGraficoVentas[j]=0.00;
+            $scope.dataGraficoCompras[j]=0.00;
+        }
 
+        LlamadaURL(false);
+    
+        LlamadaURL(true);
+
+        
+
+
+        
+        
+        //Las compras
 
 
 
@@ -75,21 +88,34 @@ angular.module('sbAdminApp')
 
 
     function LlamadaURL(A_Compras) {
-        console.log("ObtenerDatosGraficos");
-        var cad;
         
-        cad="compras";
-        if (!A_Compras) cad="ventas";
-        cad="graficos" + cad; 	
-
+        var cad="";
+        
         UrlApiFinal(cad);
-        
+        cad=cad + "graficos/"; 
+        if (A_Compras)
+            cad=cad + "compras";
+        else
+            cad=cad + "ventas";
+        cad=UrlApiFinal(cad);
+         	
+        console.log("ObtenerDatosGraficos: " + cad);
+
         $http.get(cad).
         success(function(data) {
-            $scope.dataGrafico1 = data;
-            console.log(data);
+            $scope.dataGraficoAux = data;
+            angular.forEach(data, function(val) {
+                console.log(val.mes + ' ' + val.importe);
+                if (A_Compras)
+                    $scope.dataGraficoCompras[val.mes-1]=val.importe;
+                else
+                    $scope.dataGraficoVentas[val.mes-1]=val.importe;
+            });
+
+
+
         });
-        console.log("De vuelta");
+
     };
 
 
