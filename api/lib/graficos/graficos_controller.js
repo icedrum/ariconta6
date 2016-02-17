@@ -38,6 +38,59 @@ router.get('/compras', function (req, res) {
 });
 
 
+router.get('/BalSituacionDebe', function (req, res) {
+    var query = req.query;
+    if (query.codmacta==null) {
+            graficosMySql.BalSituacionDebe( function (err, debe) {
+            if (err) {
+                return res.status(500).send(err.message);
+            }
+            if (debe) {
+                res.json(debe)
+            } else {
+                res.status(404).send('No se han encontrado valores');
+            }
+        });
+    }
+
+});
+
+
+router.get('/BalSituacionHaber', function (req, res) {
+    var query = req.query;
+    if (query.codmacta==null) {
+            graficosMySql.BalSituacionHaber( function (err, haber) {
+            if (err) {
+                return res.status(500).send(err.message);
+            }
+            if (haber) {
+                res.json(haber)
+            } else {
+                res.status(404).send('No se han encontrado valores');
+            }
+        });
+    }
+
+});
+
+
+router.get('/ResumenBanco', function (req, res) {
+    var query = req.query;
+    if (query.codmacta==null) {
+            graficosMySql.ResumenBanco( function (err, bancos) {
+            if (err) {
+                return res.status(500).send(err.message);
+            }
+            if (bancos) {
+                res.json(bancos)
+            } else {
+                res.status(404).send('No se han encontrado valores');
+            }
+        });
+    }
+
+});
+
 
 
 

@@ -1,7 +1,7 @@
 <div>
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Empresa Pruebas S.L.  {{prueba}}</h1>
+            <h1 class="page-header">Empresa Pruebas S.L. </h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -25,40 +25,66 @@
                         click="line.onClick" series="line.series"></canvas>
                     </div>
                 </div>
-            </div>
-    </div>
-
-    <div class="col-lg-6 col-sm-12" id="bar-chart">
-        <div class="panel panel-default">
-            <div class="panel-heading">Evolucion</div>
-            <div class="panel-body">
-                <canvas id="bar" class="chart chart-bar" data="bar.data" labels="bar.labels" series="bar.series"
-                options="bar.options"></canvas>
+        </div>
+        
+        <div class="col-lg-6 col-sm-12" id="bar-chart">
+            <div class="panel panel-default">
+                <div class="panel-heading">Situacion</div>
+                <div class="panel-body">
+                    <canvas id="bar" class="chart chart-bar" data="bar.data" labels="bar.labels" series="bar.series"
+                    options="bar.options"></canvas>
+                </div>
             </div>
         </div>
-    </div>
+     </div>   
 
 
 
     <!-- /.panel -->
     <div class="row">
 
-        <!--
+        
         <div class="col-lg-8">
+            
+
+
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+                    Cuentas bancarias
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>Cuenta</th>
+                                    <th>Descripcion</th>
+                                    <th>Saldo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd gradeX" ng-repeat="cta in CtaBancos">
+                                    <td>{{cta.codmacta}}</td>
+                                    <td>{{cta.nommacta}}</td>
+                                    <td>{{cta.saldo}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+<!--
 
                  <!- /.panel-heading --
                 <timeline></timeline>
                 <!- /.panel-body ->
-            </div>
-            <!- /.panel ->
-        </div>
-        -->
-        <!-- /.col-lg-4 -->
-    </div>
-    <!-- /.row -->
-</div>
+-->
