@@ -112,7 +112,20 @@ angular
       .state('dashboard.blank',{
         templateUrl:'views/pages/blank.html',
         url:'/blank'
-    })  
+    }) 
+    .state('dashboard.cuentas',{
+        url:'/cuentas',
+        controller: 'CuentasCtrl',
+        templateUrl:'views/ariadna/cuentas.html',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:['scripts/controllers/CuentasCtrl.js']
+            })    
+          }
+        }
+      })  
     .state('dashboard.clientes',{
         url:'/clientes',
         controller: 'ClientesDatosCtrl',

@@ -35,6 +35,11 @@ angular.module('sbAdminApp')
           else
             $scope.multiCollapseVar = y;
         };
+
+        $scope.logoutClick = function(){
+          HacerLogOut();
+          window.open('index.html#/login', '_self');
+        }
       }
     }
   }]);
