@@ -1,5 +1,5 @@
 {
 	"apiPort":9080,
-	"apiHost":"192.168.1.129"   
+	"apiHost":"localhost"   
 }
 

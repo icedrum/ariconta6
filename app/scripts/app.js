@@ -112,6 +112,19 @@ angular
       .state('dashboard.blank',{
         templateUrl:'views/pages/blank.html',
         url:'/blank'
+    })    
+      .state('dashboard.ctaExtracto',{
+        templateUrl:'views/ariadna/cuentasextracto.html',
+        controller: 'CtaExtractoCtrl',
+        url:'/extracto/:codmacta',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:['scripts/controllers/CtaExtractoCtrl.js']
+            })    
+          }
+        }
     }) 
     .state('dashboard.cuentas',{
         url:'/cuentas',

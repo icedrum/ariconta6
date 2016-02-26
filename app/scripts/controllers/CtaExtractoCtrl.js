@@ -1,11 +1,12 @@
 var myApp2 = angular.module('sbAdminApp',[]); 
 
 
-myApp2.controller('CuentasCtrl', ['$scope','$http', function($scope,$http) {
+myApp2.controller('CtaExtractoCtrl', ['$scope','$http', function($scope,$http,$routeParams) {
    
 
 
     $scope.$on('$viewContentLoaded', function() {
+        
         //call it here
         initForm();
     });
@@ -14,7 +15,8 @@ myApp2.controller('CuentasCtrl', ['$scope','$http', function($scope,$http) {
 
         
         var cad;
-        cad="cuentas"
+        cad="572000003"
+        cad="cuentas/extr?codmacta=" + cad;
         cad=UrlApiFinal(cad);
   
 
@@ -24,17 +26,22 @@ myApp2.controller('CuentasCtrl', ['$scope','$http', function($scope,$http) {
               
                  //console.log(c2);
 
-                console.log(data.length);
+                console.log(data);
 
                 var arr = [];
                 var p1=[];
                 for (var j=0;j<=data.length-1;j++){
                     
+                    //Boton ver apunte
                     var c2=""
-                    c2='<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button>'
-                    c2=c2 + '&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success btn-circle"><i class="fa fa-link"></i>'
+                    c2= '&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success btn-circle"><i class="fa fa-link"></i>'
                     p1=[];
-                    p1.push(data[j].codmacta,data[j].nommacta,c2);
+
+                    
+                    p1.push(data[j].fechaent,data[j].numasien,data[j].numdocum,data[j].codconce);
+                    p1.push(data[j].ampconce,data[j].nommacta,data[j].timported,data[j].timporteh);
+
+                    p1.push(c2); //El boton'
                     arr.push(p1);
                 }
 
@@ -60,7 +67,7 @@ myApp2.controller('CuentasCtrl', ['$scope','$http', function($scope,$http) {
 
 
 function CargaDatos(data) {
-    var dt = $('#example2').dataTable();
+    var dt = $('#extracto').dataTable();
     if (data !== null && data.length === 0) {
         console.log('No se han encontrado registros');
     } else {
