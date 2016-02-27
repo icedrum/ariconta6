@@ -1,14 +1,49 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Consulta de extractos  {{pre}}</h1>
+        <h1 class="page-header">Consulta de extractos</h1>
     </div>
     <!-- /.col-lg-12 -->
-
+    <div class="alert alert-warning" ng-show="leyendoDatos">
+        Leyendo registros del servidor 
+    </div>
 
     
 </div>
 
+<div>
+    <!-- Datos cuenta -->
+    <div class="form-group">
+        <table>
+            <tr> 
+                <label for="disabledSelect">Cuenta</label>
+                <input class="form-control" id="disabledInput" type="text" placeholder="430000001    DAVID GANDUL CASTELLS" disabled width="75%">
+            </tr>
+            <tr height="18"></tr><!-- Linea en blanco -->
+            <tr>
+                <td width="25%">
+                    <label for="disabledSelect">Debe</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="12.0234,06" disabled >
+                </td>
+                <td width="25%">
+                    <label for="disabledSelect">Haber</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="12.0234,06" disabled >
+                </td>
+                <td width="25%">
+                    <label for="disabledSelect">Saldo</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="12.0234,06" disabled >
+                </td>
+                <td width="25%"></td>
+            </tr>
+            <tr height="18"></tr><!-- Linea en blanco -->
+        </table>
+
+    </div>
+
+</div>
 
 
 

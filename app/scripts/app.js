@@ -116,7 +116,7 @@ angular
       .state('dashboard.ctaExtracto',{
         templateUrl:'views/ariadna/cuentasextracto.html',
         controller: 'CtaExtractoCtrl',
-        url:'/extracto/:codmacta',
+        url:'/extracto?codmacta',
         resolve: {
           loadMyFiles:function($ocLazyLoad) {
             $ocLazyLoad.load({
