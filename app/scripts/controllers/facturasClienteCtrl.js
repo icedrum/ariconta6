@@ -1,59 +1,101 @@
 var myApp2 = angular.module('sbAdminApp',[]); 
 
 
-myApp2.controller('CtaExtractoCtrl', ['$scope','$http','$stateParams', function($scope,$http,$stateParams) {
+myApp2.controller('facturasClienteCtrl', ['$scope','$http', function($scope,$http) {
    
-    $scope.leyendoDatos=true;
-    $scope.CampoCta=".."
-    $scope.Debe=0.00;
-    $scope.Haber=0.00;
-    $scope.Saldo=0.00;
+    $scope.leyendoDatos=false;
+  
+    $scope.FechaDesde = {
+        value: new Date(2015,1,1,00,0,0)
+    };
+    $scope.FechaHasta = {
+        value: new Date(2016,12,31,23,59,59)
+    };
+
+
+    $scope.AsientoDesde;
+    $scope.AsientoHasta;
+    $scope.ConceptoDesde;
+    $scope.ConceptoHasta;
+    $scope.CuentaDesde;
+    $scope.CuentaHasta;
+    $scope.DebeDesde;
+    $scope.DebeHasta;
+    $scope.documen;
+    $scope.ampliacion;
 
     $scope.$on('$viewContentLoaded', function() {
         //console.log($stateParams.codmacta);
 
-        //Los datos de la cabecera
-        DatosCabecera();
         //Los extractos
-        initForm();
+        CargaSQL(-1);
     });
 
 
-    function DatosCabecera(){
 
-        var cad;
-        cad=$stateParams.codmacta;
-        cad="cuentas/extrcab?codmacta=" + cad;
-        cad=UrlApiFinal(cad);
-  
-        $http.get(cad).
-        success(function(data) {
-            console.log(data[0]);
-            $scope.CampoCta=data[0].codmacta +  "   "  + data[0].nommacta;
-            $scope.Debe=data[0].debe;
-            $scope.Haber=data[0].haber;
-            $scope.Saldo=$scope.Haber -$scope.Debe;
-        });
-    };
+    $scope.HacerBusqueda=function() {
+        var cad="";
 
 
-   
+        //ASIENTO
+        if (!(angular.isUndefined($scope.AsientoDesde) || $scope.AsientoDesde === null ))
+            cad += " AND numasien>= " + $scope.AsientoDesde;
+        if (!(angular.isUndefined($scope.AsientoHasta) || $scope.AsientoHasta === null ))
+            cad += " AND numasien<= " + $scope.AsientoHasta;
+
+        //Cuenta 
+        if (!(angular.isUndefined($scope.CuentaDesde) || $scope.CuentaDesde === null ))
+            cad += " AND codmacta >=" + $scope.CuentaDesde ;
+        if (!(angular.isUndefined($scope.CuentaHasta) || $scope.CuentaHasta === null ))
+            cad += " AND codmacta <=" + $scope.CuentaHasta ;
+           
+        //Numdocum
+        if (!(angular.isUndefined($scope.documen) || $scope.documen === null ))
+           { if ($scope.documen!='')
+            cad += " AND Numdocum like '%" + $scope.documen + "%'" ;
+            }
+        //ampliaci
+        if (!(angular.isUndefined($scope.ampliacion) || $scope.ampliacion === null ))
+           { if ($scope.ampliacion!='')
+            cad += " AND ampliaci like '%" + $scope.ampliacion + "%'" ;
+            }
+       
 
 
-    function initForm() {
+         
+        if (cad!=''){
+            cad="1 " + cad;
+
+            CargaSQL(cad);
+
+
+        }
+
+
+
+
+
+
+
+    } //Fin funcion hacerbusqueda
+   //   %20AND%20
+
+
+    function CargaSQL(misql) {
 
         
         var cad;
-        cad=$stateParams.codmacta;
-        cad="cuentas/extr?codmacta=" + cad;
+        if (misql=="") misql="-1"
+        cad="apuntes?misql=" + misql;
         cad=UrlApiFinal(cad);
-  
+        $scope.ExistenDatos=false;
 
+        console.log(cad);
         $http.get(cad).
         success(function(data) {
                 var c2= JSON.stringify(data);
               
-                 //console.log(c2);
+                 console.log(c2);
 
                 //console.log(data);
 
@@ -75,7 +117,7 @@ myApp2.controller('CtaExtractoCtrl', ['$scope','$http','$stateParams', function(
                     arr.push(p1);
                 }
 
-         
+                 if (j>0) $scope.ExistenDatos=true;
 
 
                 CargaDatos(arr);
@@ -90,7 +132,7 @@ myApp2.controller('CtaExtractoCtrl', ['$scope','$http','$stateParams', function(
 
 
 function CargaDatos(data) {
-    var dt = $('#extracto').dataTable({
+    var dt = $('#tablaAsiento').dataTable({
         language: {
             processing: "Procesando...",
             info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",

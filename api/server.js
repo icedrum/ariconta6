@@ -11,6 +11,7 @@ var usuario_router = require('./lib/usuarios/usuarios_controller');
 var cobros_router = require('./lib/cobros/cobros_controller');
 var graficos_router = require('./lib/graficos/graficos_controller');
 var cuentas_router = require('./lib/cuentas/cuentas_controller');
+var apuntes_router = require('./lib/apuntes/apuntes_controller');
 
 // express
 var app = express();
@@ -62,6 +63,9 @@ app.use('/api/graficos', graficos_router);
 //Cuentas contables
 app.use('/api/cuentas', cuentas_router);
 
+
+//Historico de apuntes
+app.use('/api/apuntes', apuntes_router);
 
 
 

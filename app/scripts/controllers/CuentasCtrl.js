@@ -13,7 +13,7 @@ myApp2.controller('CuentasCtrl', ['$scope','$http','$state', function($scope,$ht
 
 
     $scope.ClickConExt= function(codmacta){
-        console.log("Cl " + codmacta);
+       
         //c2='<a  ui-sref="dashboard.ctaExtracto1({codmacta:' + data[j].codmacta + '})" >'
         var cad="()";
           $state.go('dashboard.ctaExtracto',{codmacta: codmacta });
@@ -65,7 +65,35 @@ myApp2.controller('CuentasCtrl', ['$scope','$http','$state', function($scope,$ht
 
 
 function CargaDatos(data) {
-    var dt = $('#example2').dataTable();
+    var dt = $('#example2').dataTable({
+        language: {
+            processing: "Procesando...",
+            info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+            infoFiltered: "(filtrado de un total de _MAX_ registros)",
+            infoPostFix: "",
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            loadingRecords: "Cargando...",
+            "search": "Buscar :",
+            zeroRecords: "No se encontraron resultados",
+            emptyTable: "Ningún dato disponible en esta tabla",
+            paginate: {
+                first: "Primero",
+                previous: "Anterior",
+                next: "Siguiente",
+                last: "Último"
+            },
+            aria: {
+                sortAscending: ": Activar para ordenar la columna de manera ascendente",
+                sortDescending: ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    });
+
+
+
+
+
     if (data !== null && data.length === 0) {
         console.log('No se han encontrado registros');
     } else {

@@ -16,27 +16,47 @@
     <div class="form-group">
         <table>
             <tr> 
-                <label for="disabledSelect">Cuenta</label>
-                <input class="form-control" id="disabledInput" type="text" placeholder="430000001    DAVID GANDUL CASTELLS" disabled width="75%">
+                <td width "85%" width="20%">
+                    <label for="disabledSelect">Cuenta</label>
+                </td>
+                <td width="5%" width="20%">&nbsp</td>
+                <td width="5%" width="20%">
+                    <label>&nbsp</label>
+                </td>
             </tr>
+            <tr>
+                <td width "85%">
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{CampoCta}}" disabled>
+                </td>
+                <td width="5%">&nbsp</td>
+                <td width="5%">
+                    <button type="button" class="btn btn-primary" onClick="javascript:history.go(-1);">Volver</button>
+                </td>
+
+
+            </tr>
+        </table>
+        <table>
             <tr height="18"></tr><!-- Linea en blanco -->
             <tr>
-                <td width="25%">
+                <td width="20%">
                     <label for="disabledSelect">Debe</label>
 
-                    <input class="form-control" id="disabledInput" type="text" placeholder="12.0234,06" disabled >
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{Debe | number:2 }}" disabled >
                 </td>
+                <td width="5%"></td>
                 <td width="25%">
                     <label for="disabledSelect">Haber</label>
 
-                    <input class="form-control" id="disabledInput" type="text" placeholder="12.0234,06" disabled >
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{Haber | number:2 }}" disabled >
                 </td>
+                <td width="5%"></td>
                 <td width="25%">
                     <label for="disabledSelect">Saldo</label>
 
-                    <input class="form-control" id="disabledInput" type="text" placeholder="12.0234,06" disabled >
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{Saldo | number:2  }}" disabled >
                 </td>
-                <td width="25%"></td>
+                <td></td>
             </tr>
             <tr height="18"></tr><!-- Linea en blanco -->
         </table>

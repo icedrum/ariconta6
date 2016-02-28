@@ -47,4 +47,26 @@ module.exports.getExtracto = function (codmacta, callback) {
     });
 };
 
+//http://localhost:9080/api/cuentas/extrcab?codmacta=572000003
 
+module.exports.getExtractoCabecera = function (codmacta, callback) {
+    var datos1 = null;
+    var sql = "SELECT cuentas.codmacta,nommacta,sum(coalesce(timported,0)) debe,sum(coalesce(timporteh,0)) haber";
+    sql += " FROM cuentas,hlinapu WHERE cuentas.codmacta=hlinapu.codmacta";
+    sql += " AND cuentas.codmacta= ? AND fechaent>='2015-01-01'";
+    sql = mysql.format(sql, codmacta);
+    console.log(sql);
+    var connection = conector.getConnectionConta();
+    connection.query(sql, function (err, result) {
+        if (err) {
+            callback(err, null);
+            conector.closeConnection(connection);
+            return;
+        }
+        if (result) {
+            datos1 = result;
+        }
+        callback(null, datos1);
+        conector.closeConnection(connection);
+    });
+};

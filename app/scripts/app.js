@@ -125,6 +125,19 @@ angular
             })    
           }
         }
+    })    
+      .state('dashboard.facturasCliente',{
+        templateUrl:'views/ariadna/facturasCliente.html',
+        controller: 'facturasClienteCtrl',
+        url:'/facturasCliente',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:['scripts/controllers/facturasClienteCtrl.js']
+            })    
+          }
+        }
     }) 
     .state('dashboard.cuentas',{
         url:'/cuentas',
