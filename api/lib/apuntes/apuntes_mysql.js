@@ -9,10 +9,8 @@ module.exports.getApuntes = function (misql, callback) {
     var apuntes = null;
     var sql = "SELECT";
     sql += " numasien ,fechaent , numdiari , linliapu,";
-    sql += " numdocum as numorden,";
-    sql += " linliapu AS fechafact,";
-    sql += " hlinapu.codmacta AS codmacta,";
-    sql += " nommacta , numdocum,codconce,ampconce,timported,timporteh";
+    sql += " numdocum,hlinapu.codmacta AS codmacta,";
+    sql += " nommacta ,codconce,ampconce,timported,timporteh";
     sql += "  FROM  hlinapu,cuentas ";
     sql += " WHERE hlinapu.codmacta = cuentas.codmacta AND ";
     sql += " 1 =  " + misql; 

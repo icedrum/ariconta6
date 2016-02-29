@@ -1,7 +1,7 @@
 var myApp2 = angular.module('sbAdminApp',[]); 
 
 
-myApp2.controller('facturasClienteCtrl', ['$scope','$http', function($scope,$http) {
+myApp2.controller('AsientosBusCtrl', ['$scope','$http', function($scope,$http) {
    
     $scope.leyendoDatos=false;
     $scope.ExistenDatos=true;

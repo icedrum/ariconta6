@@ -139,6 +139,19 @@ angular
           }
         }
     }) 
+      .state('dashboard.asientosB',{
+        templateUrl:'views/ariadna/asientosBus.html',
+        controller: 'AsientosBusCtrl',
+        url:'/Asientos',
+        resolve: {    
+          loadMyFiles:function($ocLazyLoad) {
+            $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:['scripts/controllers/AsientosBusCtrl.js']
+            })    
+          }
+        }
+    }) 
     .state('dashboard.cuentas',{
         url:'/cuentas',
         controller: 'CuentasCtrl',
