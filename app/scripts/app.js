@@ -138,6 +138,19 @@ angular
             })    
           }
         }
+    })    
+      .state('dashboard.cuentaDetalle',{
+        templateUrl:'views/ariadna/cuentaDetalle.html',
+        controller: 'cuentaDetalleCtrl',
+        url:'/cuentaDetalle?codmacta',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:['scripts/controllers/cuentaDetalleCtrl.js']
+            })    
+          }
+        }
     }) 
       .state('dashboard.asientosB',{
         templateUrl:'views/ariadna/asientosBus.html',

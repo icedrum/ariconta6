@@ -70,3 +70,31 @@ module.exports.getExtractoCabecera = function (codmacta, callback) {
         conector.closeConnection(connection);
     });
 };
+
+
+
+
+module.exports.getDetalleCuenta = function (codmacta, callback) {
+    var datos1 = null;
+    var sql = "SELECT codmacta,nommacta,nifdatos,model347,dirdatos,codposta,"
+    sql += "despobla,desprovi,pais,maidatos,"
+    sql += "obsdatos,cuentas.iban,entidad,oficina,control,cuentaba"
+    sql += ",cuentas.forpa,nomforpa"
+    sql += " from cuentas left join formapago on cuentas.forpa=formapago.codforpa"
+    sql += " WHERE cuentas.codmacta= ?";
+    sql = mysql.format(sql, codmacta);
+    console.log(sql);
+    var connection = conector.getConnectionConta();
+    connection.query(sql, function (err, result) {
+        if (err) {
+            callback(err, null);
+            conector.closeConnection(connection);
+            return;
+        }
+        if (result) {
+            datos1 = result;
+        }
+        callback(null, datos1);
+        conector.closeConnection(connection);
+    });
+};

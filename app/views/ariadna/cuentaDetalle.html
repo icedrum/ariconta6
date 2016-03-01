@@ -1,0 +1,104 @@
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Detalle cuenta</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+    <div class="alert alert-warning" ng-show="leyendoDatos">
+        Leyendo registros del servidor 
+    </div>
+
+    
+</div>
+
+<div>
+    <!-- Datos cuenta -->
+    <div class="form-group">
+        <table>
+            <tr> 
+                <td width "85%" width="20%">
+                    <label for="disabledSelect">Cuenta</label>
+                </td>
+                <td width="5%" width="20%">&nbsp</td>
+                <td width="5%" width="20%">
+                    <label>&nbsp</label>
+                </td>
+            </tr>
+            <tr>
+                <td width "85%">
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{CampoCta}}" disabled>
+                </td>
+                <td width="5%">&nbsp</td>
+                <td width="5%">
+                    <button type="button" class="btn btn-primary" onClick="javascript:history.go(-1);">Volver</button>
+                </td>
+
+
+            </tr>
+        </table>
+        <table>
+            <tr height="18"></tr><!-- Linea en blanco -->
+            <tr>
+                <td width="20%">
+                    <label for="disabledSelect">NIF</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.nifdatos}}" disabled >
+                </td>
+                <td width="5%"></td>
+                <td width="25%">
+                    <label for="disabledSelect">Haber</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.dirdatos}}" disabled >
+                </td>
+                <td width="5%"></td>
+                <td width="25%">
+                    <label for="disabledSelect">Saldo</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{Saldo | number:2  }}" disabled >
+                </td>
+                <td></td>
+            </tr>
+            <tr height="18"></tr><!-- Linea en blanco -->
+        </table>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table id="extracto" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th width="8%">Fecha</th>
+                <th width="5%">Asi.</th>
+                <th width="12%">Documento</th>
+                <th width="4%">Conce.</th>
+                <th width="30%">Ampliacion</th>
+                <th width="25%">Contrapartida</th>
+                <th width="6%">Debe</th>
+                <th width="6%">Haber</th>
+                <th></th>
+            </tr>
+        </thead>
+
+    </table> 
+
+<!-- Pie de pagina
+
+ -->
+<div class="alert alert-success">
+    Ariconta6 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="#" class="alert-link">Ariadna Software</a>
+</div>

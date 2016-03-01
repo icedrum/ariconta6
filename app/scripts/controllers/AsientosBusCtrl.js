@@ -58,12 +58,12 @@ myApp2.controller('AsientosBusCtrl', ['$scope','$http', function($scope,$http) {
         //Numdocum
         if (!(angular.isUndefined($scope.documen) || $scope.documen === null ))
            { if ($scope.documen!='')
-            cad += " AND Numdocum like '%" + $scope.documen + "%'" ;
+            cad += " AND Numdocum like '%25" + $scope.documen + "%25'" ;
             }
         //ampliaci
         if (!(angular.isUndefined($scope.ampliacion) || $scope.ampliacion === null ))
            { if ($scope.ampliacion!='')
-            cad += " AND ampliaci like '%" + $scope.ampliacion + "%'" ;
+            cad += " AND ampconce like '%25" + $scope.ampliacion + "%25'" ;
             }
        
 
@@ -116,7 +116,7 @@ myApp2.controller('AsientosBusCtrl', ['$scope','$http', function($scope,$http) {
                     //c2=moment(data[j].fechaent).format('DD/MM/YYYY');
                     c2=moment(data[j].fechaent).format('YYYY/MM/DD');
                     p1.push(data[j].numasien,c2,data[j].numdiari,data[j].linliapu,data[j].numdocum);
-                    p1.push(data[j].codmacta,data[j].nommacta,data[j].codconce,data[j].linliapu.ampconce,data[j].timported,data[j].timporteh);
+                    p1.push(data[j].codmacta,data[j].nommacta,data[j].codconce,data[j].ampconce,data[j].timported,data[j].timporteh);
 
                     c2= '&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success btn-circle"><i class="fa fa-link"></i>'
                     p1.push(c2); //El boton'
@@ -125,8 +125,7 @@ myApp2.controller('AsientosBusCtrl', ['$scope','$http', function($scope,$http) {
                 }
 
                  if (j>0) $scope.ExistenDatos=true;
-
-
+                console.log("J vale: " + j);
                 CargaDatos(arr);
                 
 
@@ -140,6 +139,7 @@ myApp2.controller('AsientosBusCtrl', ['$scope','$http', function($scope,$http) {
 
 function CargaDatos(data) {
     var dt = $('#tablaAsiento').dataTable({
+        retrieve: true,
         language: {
             processing: "Procesando...",
             info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",

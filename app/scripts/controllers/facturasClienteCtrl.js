@@ -13,8 +13,8 @@ myApp2.controller('facturasClienteCtrl', ['$scope','$http', function($scope,$htt
     };
             
 
-    $scope.AsientoDesde;
-    $scope.AsientoHasta;
+    $scope.facturaDesde;
+    $scope.facturaHasta;
     $scope.ConceptoDesde;
     $scope.ConceptoHasta;
     $scope.CuentaDesde;

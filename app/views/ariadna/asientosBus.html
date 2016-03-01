@@ -11,116 +11,116 @@
     <div>&nbsp</div>
 
 
-<form name="myForm" ng-controller="AsientosBusCtrl">
-    <div class="table-responsive">
-    <h4><u>Criterios de busqueda:</u> </h4>
-    
+    <form name="myForm" ng-controller="AsientosBusCtrl">
+        <div class="table-responsive">
+        <h4><u>Criterios de busqueda:</u> </h4>
+        
 
-    <div class="alert alert-warning" ng-show="leyendoDatos">
-        {{leyendoDatos}} 
-    </div>
-
-
-    <table class="table table-striped  " width="090%">
-        <thead width="100%">
-            <th width="15%"></th>
-            <th width="1%"></th>
-            <th width="10%">Desde</th>
-            <th width="1%"></th>
-            <th width="10%">Hasta</th>
+        <div class="alert alert-warning" ng-show="leyendoDatos">
+            {{leyendoDatos}}  leyendo datos
+        </div>
 
 
-        </thead>
-
-        <tr>
-            <td>Fecha entrada</td>
-            <td></td>
-            <td>
-                <input type="date" id="exampleInput" name="f1" ng-model="FechaDesde.value"/>
-            </td>
-            <td ></td>
-            <td>
-                <input type="date" id="exampleInput" name="f2" ng-model="FechaHasta.value"/>
-            </td>
-        </tr>
-        <tr>
-            <td>Nº Asiento</td>
-            <td ></td>
-            <td>
-               <input type="number" id="ato1" name="ato1" ng-model="AsientoDesde"/>
-            </td>
-            <td ></td>
-            <td>
-               <input type="number" id="ato2" name="ato2" ng-model="AsientoHasta"/>
-            </td>
-        </tr>
-        <tr>
-            <td>Cuenta contable</td>
-            <td></td>
-            <td>
-               <input type="number" id="cta1" name="cta1" ng-model="CuentaDesde"/>
-            </td>
-            <td></td>
-            <td>
-               <input type="number" id="cta2" name="cta2" ng-model="CuentaHasta"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Importe DEBE</td>
-            <td ></td>
-            <td>
-               <input type="number" id="debe1" name="debe1" ng-model="DebeDesde"/>
-            </td>
-            <td></td>
-            <td>
-               <input type="number" id="debe2" name="debe2" ng-model="DebeHasta"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Importe HABER</td>
-            <td ></td>
-            <td>
-               <input type="number" id="haber1" name="haber1" ng-model="HaberDesde"/>
-            </td>
-            <td></td>
-            <td>
-               <input type="number" id="haber2" name="haber2" ng-model="HaberHasta"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                Documento
-            </td>
-            <td></td>
-            <td>
-               <input type="text" id="docum" name="docum" ng-model="documen"/>
-            </td>
-            
-            <td></td>
-        </tr>
+        <table class="table table-striped  "     width="090%">
+            <thead width="100%">
+                <th width="15%"></th>
+                <th width="1%"></th>
+                <th width="10%">Desde</th>
+                <th width="1%"></th>
+                <th width="10%">Hasta</th>
 
 
+            </thead>
 
-        <tr>
-            <td>
-                Ampliacion
-            </td>
-            <td></td>
-            <td>
-               <input type="text" id="ampliaci" name="ampliaci" ng-model="ampliacion"/>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary" ng-click="HacerBusqueda()">Buscar</button>
-            </td>
-        </tr>
-</table>
+            <tr>
+                <td>Fecha entrada</td>
+                <td></td>
+                <td>
+                    <input type="date" id="exampleInput" name="f1" ng-model="FechaDesde.value"/>
+                </td>
+                <td ></td>
+                <td>
+                    <input type="date" id="exampleInput" name="f2" ng-model="FechaHasta.value"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Nº Asiento</td>
+                <td ></td>
+                <td>
+                   <input type="number" id="ato1" name="ato1" ng-model="AsientoDesde"/>
+                </td>
+                <td ></td>
+                <td>
+                   <input type="number" id="ato2" name="ato2" ng-model="AsientoHasta"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Cuenta contable</td>
+                <td></td>
+                <td>
+                   <input type="number" id="cta1" name="cta1" ng-model="CuentaDesde"/>
+                </td>
+                <td></td>
+                <td>
+                   <input type="number" id="cta2" name="cta2" ng-model="CuentaHasta"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Importe DEBE</td>
+                <td ></td>
+                <td>
+                   <input type="number" id="debe1" name="debe1" ng-model="DebeDesde"/>
+                </td>
+                <td></td>
+                <td>
+                   <input type="number" id="debe2" name="debe2" ng-model="DebeHasta"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Importe HABER</td>
+                <td ></td>
+                <td>
+                   <input type="number" id="haber1" name="haber1" ng-model="HaberDesde"/>
+                </td>
+                <td></td>
+                <td>
+                   <input type="number" id="haber2" name="haber2" ng-model="HaberHasta"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Documento
+                </td>
+                <td></td>
+                <td>
+                   <input type="text" id="docum" name="docum" ng-model="documen"/>
+                </td>
+                
+                <td></td>
+            </tr>
+
+
+
+            <tr>
+                <td>
+                    Ampliacion
+                </td>
+                <td></td>
+                <td>
+                   <input type="text" id="ampliaci" name="ampliaci" ng-model="ampliacion"/>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" ng-click="HacerBusqueda()">Buscar</button>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 
 
-</form>
 
 
 
@@ -129,10 +129,6 @@
 
 
 
-
-
-
-</div>
 
 
 <table id="tablaAsiento" class="display" cellspacing="0" width="100%" ng-show="ExistenDatos">
