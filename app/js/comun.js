@@ -32,9 +32,14 @@ function comprobarLogin() {
 
 
 function HacerLogOut(){
-     eraseCookie('Usuario');
-     eraseCookie('UsuarioObj');
+     borraCookie('Usuario');
+     borraCookie('UsuarioObj');
 }
+
+
+
+
+
 
 function UrlApiFinal(UrlFinal){
 
@@ -97,4 +102,11 @@ function checkCookie() {
 
 function eraseCookie(name) {
     createCookie(name,"",-1);
+}
+
+function borraCookie(name) {
+    var cad;
+    cad="'" + name + " =; max-age=0'";
+    console.log(cad);
+    document.cookie = cad;
 }

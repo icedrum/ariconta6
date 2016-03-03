@@ -6,11 +6,16 @@ myApp2.controller('cuentaDetalleCtrl', ['$scope','$http','$stateParams', functio
     $scope.leyendoDatos=true;
     $scope.CampoCta=".."
     $scope.DatosCta;
+    $scope.MostrarDatos = {
+       fiscales : false,
+       tesoreria : false
+     };
     $scope.$on('$viewContentLoaded', function() {
         //console.log($stateParams.codmacta);
 
         //Los datos de la cabecera
         DatosCabecera();
+        TraeCobros();
         $scope.leyendoDatos=false;
     });
 
@@ -24,9 +29,23 @@ myApp2.controller('cuentaDetalleCtrl', ['$scope','$http','$stateParams', functio
   
         $http.get(cad).
         success(function(data) {
-            console.log(data[0]);
+            
             $scope.CampoCta=data[0].codmacta +  "   "  + data[0].nommacta;
             $scope.DatosCta=data[0];
+             
+            cad="";
+            if(!!data[0].iban) cad =  data[0].iban ;
+
+            $scope.DatosCCC=cad;
+            if (cad.length==24)    
+            {
+                $scope.DatosCCC=cad.substring(0,4) + " " + cad.substring(4,8) + " " + cad.substring(8,12);
+                $scope.DatosCCC=$scope.DatosCCC + " " + cad.substring(12,16) + " " + cad.substring(16,20);
+                $scope.DatosCCC=$scope.DatosCCC + " " + cad.substring(20,24) ;
+            }
+            console.log(cad + " s--> " + cad.substring(4,16));
+          
+
         });
     };
 
@@ -39,7 +58,7 @@ myApp2.controller('cuentaDetalleCtrl', ['$scope','$http','$stateParams', functio
         
         var cad;
         cad=$stateParams.codmacta;
-        cad="cuentas/extr?codmacta=" + cad;
+        cad="cobros/?codmacta=" + cad;
         cad=UrlApiFinal(cad);
   
 
@@ -47,10 +66,6 @@ myApp2.controller('cuentaDetalleCtrl', ['$scope','$http','$stateParams', functio
         success(function(data) {
                 var c2= JSON.stringify(data);
               
-                 //console.log(c2);
-
-                //console.log(data);
-
                 var arr = [];
                 var p1=[];
                 var c2=""
@@ -60,10 +75,11 @@ myApp2.controller('cuentaDetalleCtrl', ['$scope','$http','$stateParams', functio
                     
                     p1=[];
                     //c2=moment(data[j].fechaent).format('DD/MM/YYYY');
-                    c2=moment(data[j].fechaent).format('YYYY/MM/DD');
-                    p1.push(c2,data[j].numasien,data[j].numdocum,data[j].codconce);
-                    p1.push(data[j].ampconce,data[j].nommacta,data[j].timported,data[j].timporteh);
-
+                    c2=moment(data[j].fechafact).format('YYYY/MM/DD');
+                    p1.push(c2,data[j].numserie,data[j].numfactu,data[j].numorden);
+                    p1.push(data[j].codforpa,data[j].nomforpa)
+                    c2=moment(data[j].fechavenci).format('YYYY/MM/DD');
+                    p1.push(c2,data[j].total);
                     c2= '&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success btn-circle"><i class="fa fa-link"></i>'
                     p1.push(c2); //El boton'
                     arr.push(p1);

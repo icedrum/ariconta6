@@ -35,31 +35,103 @@
 
 
             </tr>
-        </table>
-        <table>
-            <tr height="18"></tr><!-- Linea en blanco -->
             <tr>
-                <td width="20%">
+                <td width "85%">
+                    <label for="disabledSelect">Observaciones</label>
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.obsdatos}}" disabled>
+                </td>
+            </tr>
+
+        </table>
+        <br>
+        <label>Mostrar datos fiscales:&nbsp;&nbsp;
+            <input type="checkbox" ng-model="MostrarDatos.fiscales">
+        </label><br/>
+        <!--             <tr height="18"></tr> Linea en blanco -->  
+        <table ng-show="MostrarDatos.fiscales">
+
+            <tr>
+                <td width="8%">
                     <label for="disabledSelect">NIF</label>
 
                     <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.nifdatos}}" disabled >
                 </td>
-                <td width="5%"></td>
-                <td width="25%">
-                    <label for="disabledSelect">Haber</label>
+                <td width="2%"></td>
+                <td width="45%">
+                    <label for="disabledSelect">Direccion</label>
 
                     <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.dirdatos}}" disabled >
                 </td>
-                <td width="5%"></td>
-                <td width="25%">
-                    <label for="disabledSelect">Saldo</label>
+                <td width="2%"></td>
+                <td width="6%">
+                    <label for="disabledSelect">C.P</label>
 
-                    <input class="form-control" id="disabledInput" type="text" placeholder="{{Saldo | number:2  }}" disabled >
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.codposta}}" disabled >
+                </td>
+                <td width="2%"></td>
+                <td width="20%">
+                    <label for="disabledSelect">Poblacion</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.despobla}}" disabled >
+                </td>
+            </tr>
+        </table>
+        <table ng-show="MostrarDatos.fiscales">
+            <tr>
+                <td width="25%">
+                    <label for="disabledSelect">Provincia</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.desprovi}}" disabled >
+                </td>
+                <td width="2%"></td>
+                <td width="15%">
+                    <label for="disabledSelect">Pais</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.pais}}" disabled >
+                </td>
+                <td width="2%"></td>
+                <td width="36%">
+                    <label for="disabledSelect">eMail</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.maidatos }}" disabled >
+                </td>
+            </tr>
+        </table>
+
+        <br>
+
+        <label>Mostrar datos contables:&nbsp;&nbsp;
+            <input type="checkbox" ng-model="MostrarDatos.tesoreria">
+        </label><br/>
+        
+        <table ng-show="MostrarDatos.tesoreria">
+            <tr height="18"></tr><!-- Linea en blanco -->
+            <tr>
+                <td width="30%">
+                    <label for="disabledSelect">IBAN</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCCC}}" disabled >
+                </td>
+                <td width="1%"></td>
+                <td width="4%">
+                    <label for="disabledSelect">Cod.</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.forpa}}" disabled >
+                </td>
+                <td width="1%"></td>
+                <td width="45%">
+                    <label for="disabledSelect">Forma de pago</label>
+
+                    <input class="form-control" id="disabledInput" type="text" placeholder="{{DatosCta.nomforpa}}" disabled >
                 </td>
                 <td></td>
             </tr>
             <tr height="18"></tr><!-- Linea en blanco -->
         </table>
+
+
+
+
 
     </div>
 
@@ -76,29 +148,32 @@
 
 
 
+<div  ng-show="MostrarDatos.tesoreria">
 
 
 
-<table id="extracto" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th width="8%">Fecha</th>
-                <th width="5%">Asi.</th>
-                <th width="12%">Documento</th>
-                <th width="4%">Conce.</th>
-                <th width="30%">Ampliacion</th>
-                <th width="25%">Contrapartida</th>
-                <th width="6%">Debe</th>
-                <th width="6%">Haber</th>
-                <th></th>
-            </tr>
-        </thead>
+    <table id="extracto" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th width="8%">Fecha</th>
+                    <th width="5%">Serie</th>
+                    <th width="12%">Numero</th>
+                    <th width="8%">Vto</th>
+                    <th width="8%">Cod</th>
+                    <th width="30%">Forma pago</th>
+                    <th width="25%">F. Venci</th>
+                    <th width="6%">Pendiente</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-    </table> 
+        </table> 
+</div>
 
 <!-- Pie de pagina
 
  -->
+ <br>
 <div class="alert alert-success">
     Ariconta6 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="#" class="alert-link">Ariadna Software</a>
 </div>

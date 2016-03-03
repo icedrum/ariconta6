@@ -12,7 +12,7 @@ module.exports.getCobros = function (codmacta, callback) {
     sql += " fecfactu AS fechafact,";
     sql += " cobros.codforpa AS codforpa,";
     sql += " nomforpa AS nomforpa,";
-    sql += " impcobro AS impcobro,";
+    sql += " gastos AS gastos,";
     sql += " impvenci+IF(gastos IS NULL,0,gastos)-IF(impcobro IS NULL,0,impcobro) AS total";
     sql += " FROM  cobros";
     sql += " INNER JOIN formapago ON cobros.codforpa=formapago.codforpa";
