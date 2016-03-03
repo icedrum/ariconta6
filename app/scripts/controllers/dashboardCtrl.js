@@ -37,7 +37,7 @@ angular.module('sbAdminApp')
 
 
 
-
+   
    $scope.bar = {
 	    labels: etiquetasMes,
 		series: ['Gastos', 'Ingresos'],
@@ -139,7 +139,9 @@ angular.module('sbAdminApp')
 
 
 
-    
+    function HacerElLogOFF(){
+        console.log ('Haciendo log off');
+    } 
 
 
 }]);

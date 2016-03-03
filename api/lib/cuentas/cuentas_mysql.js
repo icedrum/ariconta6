@@ -53,7 +53,7 @@ module.exports.getExtractoCabecera = function (codmacta, callback) {
     var datos1 = null;
     var sql = "SELECT cuentas.codmacta,nommacta,sum(coalesce(timported,0)) debe,sum(coalesce(timporteh,0)) haber";
     sql += " FROM cuentas,hlinapu WHERE cuentas.codmacta=hlinapu.codmacta";
-    sql += " AND cuentas.codmacta= ? AND fechaent>='2015-01-01'";
+    sql += " AND cuentas.codmacta= ? AND fechaent>='2015-01-01' group by cuentas.codmacta";
     sql = mysql.format(sql, codmacta);
     console.log(sql);
     var connection = conector.getConnectionConta();

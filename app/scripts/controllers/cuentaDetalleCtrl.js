@@ -16,6 +16,7 @@ myApp2.controller('cuentaDetalleCtrl', ['$scope','$http','$stateParams', functio
         //Los datos de la cabecera
         DatosCabecera();
         TraeCobros();
+        ObtenerDatosGraficos();
         $scope.leyendoDatos=false;
     });
 
@@ -139,17 +140,103 @@ function CargaDatos(data) {
 }
 
 
+    $scope.dataGraficoHaber=[];
+    $scope.dataGraficoDebe=[];
 
 
 
 
+    $scope.line = {
+        //labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: etiquetasMes,
+        series: ['Ventas', 'Compras'],
+        data: [
+          $scope.dataGraficoHaber,
+          $scope.dataGraficoDebe
+        ],
+        onClick: function (points, evt) {
+          console.log(points, evt);
+        }
+    };
 
 
 
+    function ObtenerDatosGraficos() {
+        var i;
+        console.log('*******Preparamos multiarrya');
+
+        
+        for (var j=0;j<12;j++)
+        {
+            $scope.dataGraficoDebe[j]=0.00;
+            $scope.dataGraficoHaber[j]=0.00;
+            
+        }
+
+
+        for (var j=0;j<2;j++)
+        {
+             LlamadaURL(j);
+        }
+       
 
 
 
+    };
 
+
+
+    function LlamadaURL(Opcion) {
+        
+        var cad="";
+        var cad2="";
+        
+        cad= "graficos/"; 
+
+
+        switch(Opcion) {
+        case 0:
+            cad2= "UnaCtaDebe";
+            break;
+        case 1:
+            cad2= "UnaCtaHaber";
+            break;
+        case 2:
+            cad2= "BalSituacionDebe";
+            break;
+        case 3:
+            cad2= "BalSituacionHaber";
+            break;
+        default:
+            
+        }
+        cad2=cad2 + "?codmacta = " + $stateParams.codmacta; 
+        cad2=cad + cad2;
+        cad=UrlApiFinal(cad2);  
+        console.log("ObtenerDatosGraficos: " + cad);
+
+        $http.get(cad).
+        success(function(data) {
+            //$scope.dataGraficoAux = data;
+            angular.forEach(data, function(val) {
+                //console.log(val.mes + ' ' + val.importe);
+                if (Opcion==0)
+                    $scope.dataGraficoCompras[val.mes-1]=val.importe;
+                else
+                if (Opcion==1)
+                    $scope.dataGraficoVentas[val.mes-1]=val.importe;
+                else
+                if (Opcion==2)
+              //      $scope.dataGraficoDebe[val.mes-1]=val.importe;
+                else
+              //      $scope.dataGraficoHaber[val.mes-1]=val.importe;
+            });
+
+
+
+        });
+
+    };
 
 
 

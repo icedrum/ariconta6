@@ -74,15 +74,15 @@ router.get('/BalSituacionHaber', function (req, res) {
 });
 
 
-router.get('/ResumenBanco', function (req, res) {
+router.get('/UnaCtaHaber', function (req, res) {
     var query = req.query;
-    if (query.codmacta==null) {
-            graficosMySql.ResumenBanco( function (err, bancos) {
+    if (query.codmacta!=null) {
+            graficosMySql.UnaCtaHaber(query.codmacta, function (err, Haber)  {
             if (err) {
                 return res.status(500).send(err.message);
             }
-            if (bancos) {
-                res.json(bancos)
+            if (Haber) {
+                res.json(Haber)
             } else {
                 res.status(404).send('No se han encontrado valores');
             }
@@ -91,6 +91,23 @@ router.get('/ResumenBanco', function (req, res) {
 
 });
 
+router.get('/UnaCtaDebe', function (req, res) {
+    var query = req.query;
+    console.log(query + "Va¿");
+    if (query.codmacta!=null) {
+            graficosMySql.UnaCtaDebe(query.codmacta, function (err, Debe)      {
+            if (err) {
+                return res.status(500).send(err.message);
+            }
+            if (Debe) {
+                res.json(Debe)
+            } else {
+                res.status(404).send('No se han encontrado valores');
+            }
+        });
+    }
+
+});
 
 
 

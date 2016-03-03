@@ -32,8 +32,11 @@ function comprobarLogin() {
 
 
 function HacerLogOut(){
-     borraCookie('Usuario');
-     borraCookie('UsuarioObj');
+    console.log("Borra cock1 ");
+     eliminarCookie('Usuario');
+    console.log("Borra cock2 ");
+ 
+     eliminarCookie('UsuarioObj');
 }
 
 
@@ -104,9 +107,8 @@ function eraseCookie(name) {
     createCookie(name,"",-1);
 }
 
-function borraCookie(name) {
-    var cad;
-    cad="'" + name + " =; max-age=0'";
-    console.log(cad);
-    document.cookie = cad;
+
+var eliminarCookie = function (key) {
+    console.log("eliminarCookie: " + key);
+    return document.cookie = key + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }

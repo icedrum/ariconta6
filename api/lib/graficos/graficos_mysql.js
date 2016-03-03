@@ -121,3 +121,57 @@ module.exports.ResumenBanco = function ( callback) {
         conector.closeConnection(connection);
     });
 };
+
+
+
+
+//  Datos de una codmacta solo
+//Compras- Hber
+module.exports.UnaCtaHaber = function (codmacta, callback) {
+    var vDatos = null;
+    var sql = "";
+    sql += " select month(fechaent) mes,sum(coalesce(timporteh,0))"
+    sql += " from hlinapu where fechaent>='2015-01-01' and fechaent<='2015-12-31'"
+    sql += "  AND hlinapu.codmacta = ?  GROUP BY 1 ORDER BY 1"
+    sql = mysql.format(sql, codmacta);
+
+    var connection = conector.getConnectionConta();
+    connection.query(sql, function (err, result) {
+        if (err) {
+            callback(err, null);
+            conector.closeConnection(connection);
+            return;
+        }
+        if (result) {
+            vDatos = result;
+        }
+        callback(null, vDatos);
+        conector.closeConnection(connection);
+    });
+};
+
+module.exports.UnaCtaDebe = function (codmacta, callback) {
+    console.log("Aqui");
+    var vDatos = null;
+    var sql = "";
+    sql += " select month(fechaent) mes,sum(coalesce(timported,0))"
+    sql += " from hlinapu where fechaent>='2015-01-01' and fechaent<='2015-12-31'"
+    sql += "  AND hlinapu.codmacta = ? GROUP BY 1 ORDER BY 1"
+    console.log(sql);
+    sql = mysql.format(sql, codmacta);
+    
+
+    var connection = conector.getConnectionConta();
+    connection.query(sql, function (err, result) {
+        if (err) {
+            callback(err, null);
+            conector.closeConnection(connection);
+            return;
+        }
+        if (result) {
+            vDatos = result;
+        }
+        callback(null, vDatos);
+        conector.closeConnection(connection);
+    });
+};
