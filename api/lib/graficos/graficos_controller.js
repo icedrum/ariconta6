@@ -109,7 +109,22 @@ router.get('/UnaCtaDebe', function (req, res) {
 
 });
 
+router.get('/ResumenBanco', function (req, res) {
+    var query = req.query;
+    if (query.codmacta==null) {
+            graficosMySql.ResumenBanco( function (err, bancos) {
+            if (err) {
+                return res.status(500).send(err.message);
+            }
+            if (bancos) {
+                res.json(bancos)
+            } else {
+                res.status(404).send('No se han encontrado valores');
+            }
+        });
+    }
 
+});
 
 
 // Exports

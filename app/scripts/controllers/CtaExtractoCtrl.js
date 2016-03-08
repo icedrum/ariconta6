@@ -91,6 +91,7 @@ myApp2.controller('CtaExtractoCtrl', ['$scope','$http','$stateParams', function(
 
 function CargaDatos(data) {
     var dt = $('#extracto').dataTable({
+        "bSort": false,
         language: {
             processing: "Procesando...",
             info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",

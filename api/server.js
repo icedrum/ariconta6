@@ -12,6 +12,7 @@ var cobros_router = require('./lib/cobros/cobros_controller');
 var graficos_router = require('./lib/graficos/graficos_controller');
 var cuentas_router = require('./lib/cuentas/cuentas_controller');
 var apuntes_router = require('./lib/apuntes/apuntes_controller');
+var fracli_router = require('./lib/fracli/fracli_controller');
 
 // express
 var app = express();
@@ -63,10 +64,11 @@ app.use('/api/graficos', graficos_router);
 //Cuentas contables
 app.use('/api/cuentas', cuentas_router);
 
-
 //Historico de apuntes
 app.use('/api/apuntes', apuntes_router);
 
+//Facturas clientes
+app.use('/api/fracli', fracli_router);
 
 
 // Registrar rutas base

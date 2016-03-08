@@ -139,7 +139,7 @@ myApp2.controller('facturasClienteCtrl', ['$scope','$http', function($scope,$htt
 
 
 function CargaDatos(data) {
-    var dt = $('#tablaAsiento').dataTable({
+    var dt = $('#tablaFraCli').dataTable({
         language: {
             processing: "Procesando...",
             info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",

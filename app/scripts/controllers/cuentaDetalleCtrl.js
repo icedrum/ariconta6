@@ -20,6 +20,7 @@ myApp2.controller('cuentaDetalleCtrl', ['$scope','$http','$stateParams', functio
         $scope.leyendoDatos=false;
     });
 
+    var etiquetasMes=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];  
 
     function DatosCabecera(){
 
@@ -100,62 +101,23 @@ myApp2.controller('cuentaDetalleCtrl', ['$scope','$http','$stateParams', functio
 
 
 
-function CargaDatos(data) {
-    var dt = $('#extracto').dataTable({
-        language: {
-            processing: "Procesando...",
-            info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
-            infoFiltered: "(filtrado de un total de _MAX_ registros)",
-            infoPostFix: "",
-            "lengthMenu": "Mostrar _MENU_ registros por pagina",
-            loadingRecords: "Cargando...",
-            "search": "Buscar :",
-            zeroRecords: "No se encontraron resultados",
-            emptyTable: "Ningún dato disponible en esta tabla",
-            paginate: {
-                first: "Primero",
-                previous: "Anterior",
-                next: "Siguiente",
-                last: "Último"
-            },
-            aria: {
-                sortAscending: ": Activar para ordenar la columna de manera ascendente",
-                sortDescending: ": Activar para ordenar la columna de manera descendente"
-            }
-        }
-    });
-
-
-    if (data !== null && data.length === 0) {
-        console.log('No se han encontrado registros');
-    } else {
-        //console.log(data);
-        dt.fnClearTable();
-        dt.fnAddData(data);
-        dt.fnDraw();
-
-
-    }
-}
-
-
     $scope.dataGraficoHaber=[];
     $scope.dataGraficoDebe=[];
-
+    $scope.dataGraficoSituacion=[];
 
 
 
     $scope.line = {
         //labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         labels: etiquetasMes,
-        series: ['Ventas', 'Compras'],
+        series: ['Debe', 'Haber','Situacion'],
         data: [
           $scope.dataGraficoHaber,
-          $scope.dataGraficoDebe
+          $scope.dataGraficoDebe,
+          $scope.dataGraficoSituacion
         ],
         onClick: function (points, evt) {
-          console.log(points, evt);
+          //console.log(points, evt);
         }
     };
 
@@ -163,14 +125,13 @@ function CargaDatos(data) {
 
     function ObtenerDatosGraficos() {
         var i;
-        console.log('*******Preparamos multiarrya');
-
+        
         
         for (var j=0;j<12;j++)
         {
             $scope.dataGraficoDebe[j]=0.00;
             $scope.dataGraficoHaber[j]=0.00;
-            
+            $scope.dataGraficoSituacion[j]=0.00;            
         }
 
 
@@ -179,7 +140,7 @@ function CargaDatos(data) {
              LlamadaURL(j);
         }
        
-
+        
 
 
     };
@@ -187,10 +148,9 @@ function CargaDatos(data) {
 
 
     function LlamadaURL(Opcion) {
-        
         var cad="";
         var cad2="";
-        
+        var importe;
         cad= "graficos/"; 
 
 
@@ -202,35 +162,37 @@ function CargaDatos(data) {
             cad2= "UnaCtaHaber";
             break;
         case 2:
-            cad2= "BalSituacionDebe";
+            //cad2= "BalSituacionDebe";
             break;
         case 3:
-            cad2= "BalSituacionHaber";
+            //cad2= "BalSituacionHaber";
             break;
         default:
             
         }
-        cad2=cad2 + "?codmacta = " + $stateParams.codmacta; 
+        cad2=cad2 + "?codmacta=" + $stateParams.codmacta; 
         cad2=cad + cad2;
         cad=UrlApiFinal(cad2);  
-        console.log("ObtenerDatosGraficos: " + cad);
-
+        
         $http.get(cad).
         success(function(data) {
+            
             //$scope.dataGraficoAux = data;
             angular.forEach(data, function(val) {
-                //console.log(val.mes + ' ' + val.importe);
-                if (Opcion==0)
-                    $scope.dataGraficoCompras[val.mes-1]=val.importe;
-                else
-                if (Opcion==1)
-                    $scope.dataGraficoVentas[val.mes-1]=val.importe;
-                else
-                if (Opcion==2)
-              //      $scope.dataGraficoDebe[val.mes-1]=val.importe;
-                else
-              //      $scope.dataGraficoHaber[val.mes-1]=val.importe;
+                if (Opcion==0) $scope.dataGraficoDebe[val.mes-1]=val.importe;
+                if (Opcion==1){ 
+                    $scope.dataGraficoHaber[val.mes-1]=val.importe;
+                    importe=val.importe-$scope.dataGraficoDebe[val.mes-1];
+                    importe=Math.round(importe*100)/100;   
+                    if (val.mes>1){
+                        importe=$scope.dataGraficoSituacion[val.mes-2] + importe;
+                        importe=Math.round(importe*100)/100;                         
+                    } 
+                    $scope.dataGraficoSituacion[val.mes-1]=importe; 
+                }
+
             });
+            if (Opcion==1) console.log($scope.dataGraficoSituacion);
 
 
 
@@ -239,9 +201,44 @@ function CargaDatos(data) {
     };
 
 
+    function CargaDatos(data) {
+        var dt = $('#extracto').dataTable({
+            language: {
+                processing: "Procesando...",
+                info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                infoPostFix: "",
+                "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                loadingRecords: "Cargando...",
+                "search": "Buscar :",
+                zeroRecords: "No se encontraron resultados",
+                emptyTable: "Ningún dato disponible en esta tabla",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Último"
+                },
+                aria: {
+                    sortAscending: ": Activar para ordenar la columna de manera ascendente",
+                    sortDescending: ": Activar para ordenar la columna de manera descendente"
+                }
+            }
+        });
+
+
+        if (data !== null && data.length === 0) {
+            console.log('No se han encontrado registros');
+        } else {
+            //console.log(data);
+            dt.fnClearTable();
+            dt.fnAddData(data);
+            dt.fnDraw();
+        };
+    };
 
 
 
 
-
-}]);
+}]);  //Fin de todo

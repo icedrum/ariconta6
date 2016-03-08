@@ -130,7 +130,7 @@ module.exports.ResumenBanco = function ( callback) {
 module.exports.UnaCtaHaber = function (codmacta, callback) {
     var vDatos = null;
     var sql = "";
-    sql += " select month(fechaent) mes,sum(coalesce(timporteh,0))"
+    sql += " select month(fechaent) mes,sum(coalesce(timporteh,0)) importe"
     sql += " from hlinapu where fechaent>='2015-01-01' and fechaent<='2015-12-31'"
     sql += "  AND hlinapu.codmacta = ?  GROUP BY 1 ORDER BY 1"
     sql = mysql.format(sql, codmacta);
@@ -154,7 +154,7 @@ module.exports.UnaCtaDebe = function (codmacta, callback) {
     console.log("Aqui");
     var vDatos = null;
     var sql = "";
-    sql += " select month(fechaent) mes,sum(coalesce(timported,0))"
+    sql += " select month(fechaent) mes,sum(coalesce(timported,0)) importe"
     sql += " from hlinapu where fechaent>='2015-01-01' and fechaent<='2015-12-31'"
     sql += "  AND hlinapu.codmacta = ? GROUP BY 1 ORDER BY 1"
     console.log(sql);
