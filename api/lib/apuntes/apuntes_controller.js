@@ -6,7 +6,7 @@ router.get('/', function (req, res) {
     var query = req.query;
     if (query.misql==null) { query.misql="-1"}
     console.log (query.misql);
-    apuntesMysql.getApuntes(query.misql, function (err, apuntes) {
+    apuntesMysql.getApuntes(1,query.misql, function (err, apuntes) {
         if (err) {
             return res.status(500).send(err.message);
         }

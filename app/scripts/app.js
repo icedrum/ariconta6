@@ -152,6 +152,19 @@ angular
           }
         }
     }) 
+      .state('dashboard.fracli',{
+        templateUrl:'views/ariadna/fracli.html',
+        controller: 'fraclictrl',
+        url:'/fracli?factura1',  //SSSAAAAfra   SSS Serie   AAAA Añofactura  luego el numero
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:['scripts/controllers/fraclictrl.js']
+            })    
+          }
+        }
+    }) 
       .state('dashboard.asientosB',{
         templateUrl:'views/ariadna/asientosBus.html',
         controller: 'AsientosBusCtrl',

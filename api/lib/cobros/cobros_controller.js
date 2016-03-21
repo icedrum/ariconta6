@@ -5,7 +5,7 @@ var cobrosMysql = require('./cobros_mysql');
 router.get('/', function (req, res) {
     var query = req.query;
     if (query.codmacta==null) {
-            cobrosMysql.getCobrosSin( function (err, cobros) {
+            cobrosMysql.getCobrosSin( 1,function (err, cobros) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
     }
     else
     if (query.codmacta) {
-        cobrosMysql.getCobros(query.codmacta, function (err, cobros) {
+        cobrosMysql.getCobros(1,query.codmacta, function (err, cobros) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -39,7 +39,7 @@ router.get('/', function (req, res) {
 router.get('/pendiente', function (req, res) {
     var query = req.query;
     if (query.codmacta==null) {
-            cobrosMysql.getImportePdteTotal( function (err, cobros) {
+            cobrosMysql.getImportePdteTotal(1, function (err, cobros) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -52,7 +52,7 @@ router.get('/pendiente', function (req, res) {
     }
     else
     if (query.codmacta) {
-        cobrosMysql.getImportePdteCta(query.codmacta, function (err, cobros) {
+        cobrosMysql.getImportePdteCta(1,query.codmacta, function (err, cobros) {
             if (err) {
                 return res.status(500).send(err.message);
             }

@@ -112,3 +112,17 @@ var eliminarCookie = function (key) {
     console.log("eliminarCookie: " + key);
     return document.cookie = key + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
+
+
+
+function currencyFormatDE (num) {
+    return num
+       .toFixed(2) // always two decimal digits
+       .replace(".", ",") // replace decimal point character with ,
+       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + " €" // use . as a separator
+}
+
+
+function EtiquetasMeses(){
+    return ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+}

@@ -1,156 +1,127 @@
 <div class="row">
-    <div class="col-lg-12">
+    <span class="col-lg-12">
         <h1 class="page-header">Facturas clientes </h1>
-    </div>
-    <!-- /.col-lg-12 -->
-    <div class="alert alert-warning" ng-show="leyendoDatos">
-        Leyendo registros del servidor {{leyendoDatos}} 
-    </div>
-
-
-    <div>&nbsp</div>
-
-
-<form name="myForm" ng-controller="facturasClienteCtrl">
-    <div class="table-responsive">
-    <h4><u>Criterios de busqueda:</u> </h4>
     
+        <!-- /.col-lg-12 -->
+        <span class="alert alert-warning" ng-show="leyendoDatos">
+            Leyendo registros del servidor {{leyendoDatos}} 
+        </span>
+    </span>
 
-    <div class="alert alert-warning" ng-show="leyendoDatos">
-        {{leyendoDatos}} 
-    </div>
-
-
-    <table class="table table-striped  " width="090%">
-        <thead width="100%">
-            <th width="15%"></th>
-            <th width="1%"></th>
-            <th width="10%">Desde</th>
-            <th width="1%"></th>
-            <th width="10%">Hasta</th>
+    <span>&nbsp</span>
 
 
-        </thead>
-
-        <tr>
-            <td>Fecha entrada</td>
-            <td></td>
-            <td>
-                <input type="date" id="fecent1" name="f1" ng-model="FechaDesde.value"/>
-            </td>
-            <td ></td>
-            <td>
-                <input type="date" id="fecent2" name="f2" ng-model="FechaHasta.value"/>
-            </td>
-        </tr>
-        <tr>
-            <td>Nº Asiento</td>
-            <td ></td>
-            <td>
-               <input type="number" id="ato1" name="ato1" ng-model="AsientoDesde"/>
-            </td>
-            <td ></td>
-            <td>
-               <input type="number" id="ato2" name="ato2" ng-model="AsientoHasta"/>
-            </td>
-        </tr>
-        <tr>
-            <td>Cuenta contable</td>
-            <td></td>
-            <td>
-               <input type="number" id="cta1" name="cta1" ng-model="CuentaDesde"/>
-            </td>
-            <td></td>
-            <td>
-               <input type="number" id="cta2" name="cta2" ng-model="CuentaHasta"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Importe DEBE</td>
-            <td ></td>
-            <td>
-               <input type="number" id="debe1" name="debe1" ng-model="DebeDesde"/>
-            </td>
-            <td></td>
-            <td>
-               <input type="number" id="debe2" name="debe2" ng-model="DebeHasta"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Importe HABER</td>
-            <td ></td>
-            <td>
-               <input type="number" id="haber1" name="haber1" ng-model="HaberDesde"/>
-            </td>
-            <td></td>
-            <td>
-               <input type="number" id="haber2" name="haber2" ng-model="HaberHasta"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                Documento
-            </td>
-            <td></td>
-            <td>
-               <input type="text" id="docum" name="docum" ng-model="documen"/>
-            </td>
+    <form name="myForm" ng-controller="facturasClienteCtrl">
+        <div class="table-responsive">
             
-            <td></td>
-        </tr>
+            
+
+          
+
+
+            <table class="table table-striped  " width="090%">
+                <thead width="100%">
+                    <th width="15%"><h4><u>Criterios de busqueda:</u> </h4></th>
+                    <th width="1%"></th>
+                    <th width="10%">Desde</th>
+                    <th width="1%"></th>
+                    <th width="10%">Hasta</th>
+
+
+                </thead>
+
+                <tr>
+                    <td>Fecha factura</td>
+                    <td></td>
+                    <td>
+                        <input type="date" id="fecent1" name="f1" ng-model="FechaDesde.value"/>
+                    </td>
+                    <td ></td>
+                    <td>
+                        <input type="date" id="fecent2" name="f2" ng-model="FechaHasta.value"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Serie</td>
+                    <td ></td>
+                    <td>
+                       <input type="text" id="ser1" name="ser1" ng-model="SerieDesde"/>
+                    </td>
+                    <td ></td>
+                    <td>
+                       <input type="text" id="ser2" name="ser2" ng-model="SerieHasta"/>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td>Nº Factura</td>
+                    <td ></td>
+                    <td>
+                       <input type="number" id="ato1" name="ato1" ng-model="facturaDesde"/>
+                    </td>
+                    <td ></td>
+                    <td>
+                       <input type="number" id="ato2" name="ato2" ng-model="facturaHasta"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Cuenta contable</td>
+                    <td></td>
+                    <td>
+                       <input type="number" id="cta1" name="cta1" ng-model="CuentaDesde"/>
+                    </td>
+                    <td></td>
+                    <td>
+                       <input type="number" id="cta2" name="cta2" ng-model="CuentaHasta"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Total</td>
+                    <td ></td>
+                    <td>
+                       <input type="number" id="debe1" name="debe1" ng-model="TotalDesde"/>
+                    </td>
+                    <td></td>
+                    <td>
+                       <input type="number" id="debe2" name="debe2" ng-model="TotalHasta"/>
+                    </td>
+                </tr>
 
 
 
-        <tr>
-            <td>
-                Ampliacion
-            </td>
-            <td></td>
-            <td>
-               <input type="text" id="ampliaci" name="ampliaci" ng-model="ampliacion"/>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary" ng-click="HacerBusqueda()">Buscar</button>
-            </td>
-        </tr>
-</table>
-</div>
-
-
-</form>
-
-
-
-
-
-
-
-
-
-
-
+                <tr>
+                    <td>
+                        Ampliacion
+                    </td>
+                        <td></td>
+                    <td>
+                       <input type="text" id="ampliaci" name="ampliaci" ng-model="ampliacion"/>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" ng-click="HacerBusqueda()">Buscar</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
 </div>
 
 
 <table id="tablaFraCli" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th width="8%">Fecha</th>
-                <th width="5%">Asi.</th>
-                <th width="12%">Documento</th>
-                <th width="4%">Conce.</th>
-                <th width="30%">Ampliacion</th>
-                <th width="25%">Contrapartida</th>
-                <th width="6%">Debe</th>
-                <th width="6%">Haber</th>
+                <th width="7%">Fecha</th>
+                <th width="10%">Serie</th>
+                <th width="11%">Factura</th>
+                <th width="12%">Cuenta</th>
+                <th width="40%">Cliente</th>
+                <th width="15%" align="right">Total</th>
                 <th></th>
             </tr>
         </thead>
 
-    </table> 
+</table> 
 
 
 

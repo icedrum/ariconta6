@@ -5,7 +5,7 @@ var graficosMySql = require('./graficos_mysql');
 router.get('/ventas', function (req, res) {
     var query = req.query;
     if (query.codmacta==null) {
-            graficosMySql.FacturasMesCli( function (err, cobros) {
+            graficosMySql.FacturasMesCli(1, function (err, cobros) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -23,7 +23,7 @@ router.get('/ventas', function (req, res) {
 router.get('/compras', function (req, res) {
     var query = req.query;
     if (query.codmacta==null) {
-            graficosMySql.FacturasMesPro( function (err, cobros) {
+            graficosMySql.FacturasMesPro( 1,function (err, cobros) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -41,7 +41,7 @@ router.get('/compras', function (req, res) {
 router.get('/BalSituacionDebe', function (req, res) {
     var query = req.query;
     if (query.codmacta==null) {
-            graficosMySql.BalSituacionDebe( function (err, debe) {
+            graficosMySql.BalSituacionDebe( 1,function (err, debe) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -59,7 +59,7 @@ router.get('/BalSituacionDebe', function (req, res) {
 router.get('/BalSituacionHaber', function (req, res) {
     var query = req.query;
     if (query.codmacta==null) {
-            graficosMySql.BalSituacionHaber( function (err, haber) {
+            graficosMySql.BalSituacionHaber(1, function (err, haber) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -77,7 +77,7 @@ router.get('/BalSituacionHaber', function (req, res) {
 router.get('/UnaCtaHaber', function (req, res) {
     var query = req.query;
     if (query.codmacta!=null) {
-            graficosMySql.UnaCtaHaber(query.codmacta, function (err, Haber)  {
+            graficosMySql.UnaCtaHaber(1,query.codmacta, function (err, Haber)  {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -95,7 +95,7 @@ router.get('/UnaCtaDebe', function (req, res) {
     var query = req.query;
     console.log(query + "Va¿");
     if (query.codmacta!=null) {
-            graficosMySql.UnaCtaDebe(query.codmacta, function (err, Debe)      {
+            graficosMySql.UnaCtaDebe(1,query.codmacta, function (err, Debe)      {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -112,7 +112,7 @@ router.get('/UnaCtaDebe', function (req, res) {
 router.get('/ResumenBanco', function (req, res) {
     var query = req.query;
     if (query.codmacta==null) {
-            graficosMySql.ResumenBanco( function (err, bancos) {
+            graficosMySql.ResumenBanco(1, function (err, bancos) {
             if (err) {
                 return res.status(500).send(err.message);
             }

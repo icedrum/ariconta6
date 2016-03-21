@@ -5,7 +5,7 @@ var cuentasMysql = require('./cuentas_mysql');
 router.get('/', function (req, res) {
     var query = req.query;
     if (query.codmacta==null) {
-            cuentasMysql.getCuentas( function (err, result) {
+            cuentasMysql.getCuentas( 1,function (err, result) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
     }
     else
     if (query.codmacta) {
-        cuentasMysql.getCuentas(query.codmacta, function (err, result) {
+        cuentasMysql.getCuentas(1,query.codmacta, function (err, result) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -43,7 +43,7 @@ router.get('/extrCab', function (req, res) {
         res.status(400).send('Formato de la petición incorrecto');
     }    
     else
-        cuentasMysql.getExtractoCabecera(query.codmacta, function (err, result) {
+        cuentasMysql.getExtractoCabecera(1,query.codmacta, function (err, result) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -64,7 +64,7 @@ router.get('/extr', function (req, res) {
         res.status(400).send('Formato de la petición incorrecto');
     }    
     else
-        cuentasMysql.getExtracto(query.codmacta, function (err, result) {
+        cuentasMysql.getExtracto(1,query.codmacta, function (err, result) {
             if (err) {
                 return res.status(500).send(err.message);
             }
@@ -85,7 +85,7 @@ router.get('/ctaDetalle', function (req, res) {
         res.status(400).send('Formato de la petición incorrecto');
     }    
     else
-        cuentasMysql.getDetalleCuenta(query.codmacta, function (err, result) {
+        cuentasMysql.getDetalleCuenta(1,query.codmacta, function (err, result) {
             if (err) {
                 return res.status(500).send(err.message);
             }

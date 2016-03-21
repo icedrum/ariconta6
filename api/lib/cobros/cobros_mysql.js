@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 var conector = require('../comun/conector_mysql');
 
-module.exports.getCobros = function (codmacta, callback) {
+module.exports.getCobros = function (numeroconta, codmacta, callback) {
     var cobros = null;
     var sql = "SELECT";
     sql += " fecvenci AS fechavenci,";
@@ -14,8 +14,8 @@ module.exports.getCobros = function (codmacta, callback) {
     sql += " nomforpa AS nomforpa,";
     sql += " gastos AS gastos,";
     sql += " impvenci+IF(gastos IS NULL,0,gastos)-IF(impcobro IS NULL,0,impcobro) AS total";
-    sql += " FROM  cobros";
-    sql += " INNER JOIN formapago ON cobros.codforpa=formapago.codforpa";
+    sql += " FROM  ariconta" + numeroconta + ".cobros";
+    sql += " INNER JOIN ariconta" + numeroconta + ".formapago ON cobros.codforpa=formapago.codforpa";
     sql += " WHERE cobros.codmacta = ?";
     sql += " AND impvenci+IF(gastos IS NULL,0,gastos)-IF(impcobro IS NULL,0,impcobro) <> 0";
     sql += " ORDER BY fecvenci";
@@ -39,7 +39,7 @@ module.exports.getCobros = function (codmacta, callback) {
 
 
 
-module.exports.getCobrosSin = function ( callback) {
+module.exports.getCobrosSin = function (numeroconta, callback) {
     var cobros = null;
     var sql = "SELECT";
     sql += " fecvenci AS fechavenci,";
@@ -52,8 +52,8 @@ module.exports.getCobrosSin = function ( callback) {
     sql += " nomforpa AS nomforpa,";
     sql += " impcobro AS impcobro,";
     sql += " impvenci+IF(gastos IS NULL,0,gastos)-IF(impcobro IS NULL,0,impcobro) AS total";
-    sql += " FROM  cobros";
-    sql += " INNER JOIN formapago ON cobros.codforpa=formapago.codforpa";
+    sql += " FROM  ariconta" + numeroconta + ".cobros";
+    sql += " INNER JOIN ariconta" + numeroconta + ".formapago ON cobros.codforpa=formapago.codforpa";
     sql += " WHERE ";
     sql += "  impvenci+IF(gastos IS NULL,0,gastos)-IF(impcobro IS NULL,0,impcobro) <> 0";
     sql += " ORDER BY fecvenci";
@@ -76,8 +76,8 @@ module.exports.getCobrosSin = function ( callback) {
 
 // getCobro
 // Devuelve las lineas de cobro asociada con la clave primaria compuesta 
-module.exports.getCobro = function (numserie, codfaccl, fecfaccl, numorden, callback) {
-    var sql = "SELECT * FROM cobros WHERE numserie = ? AND codfaccl = ? AND fecfaccl = ? AND numorden = ?";
+module.exports.getCobro = function (numeroconta, numserie, codfaccl, fecfaccl, numorden, callback) {
+    var sql = "SELECT * FROM ariconta" + numeroconta + ".cobros WHERE numserie = ? AND codfaccl = ? AND fecfaccl = ? AND numorden = ?";
     sql = mysql.format(sql, [numserie, codfaccl, fecfaccl, numorden]);
     var connection = conector.getConnectionConta();
     connection.query(sql, function (err, res) {
@@ -89,33 +89,11 @@ module.exports.getCobro = function (numserie, codfaccl, fecfaccl, numorden, call
     });
 };
 
-// getNextId
-// obtiene el siguiente id de la tabla cobroslin
-var getNextId = function (numserie, codfaccl, fecfaccl, numorden, callback) {
-    var sql = "SELECT MAX(id) + 1 AS nxt FROM cobroslin WHERE numserie = ?";
-    sql += " AND codfaccl = ?";
-    sql += " AND fecfaccl = ?";
-    sql += " AND numorden = ?";
-    sql = mysql.format(sql, [numserie, codfaccl, fecfaccl, numorden]);
-    var connection = conector.getConnectionConta();
-    connection.query(sql, function (err, result) {
-        conector.closeConnection(connection);
-        if (err) {
-            return callback(err, null);
-        }
-        var nxt = result[0].nxt;
-        if (!nxt) nxt = 1;
-        callback(null, nxt);
-    });
-};
 
-
-
-
-module.exports.getImportePdteTotal = function ( callback) {
+module.exports.getImportePdteTotal = function ( numeroconta, callback) {
     var cobros = null;
     var sql = "SELECT sum(impvenci + coalesce(gastos,0) -coalesce(impcobro,0))  ";
-    sql += " FROM cobros";
+    sql += " FROM ariconta" + numeroconta + ".cobros";
     
     var connection = conector.getConnectionConta();
     connection.query(sql, function (err, result) {
@@ -133,10 +111,10 @@ module.exports.getImportePdteTotal = function ( callback) {
 };
 
 
-module.exports.getImportePdteCta = function (codmacta, callback) {
+module.exports.getImportePdteCta = function (numeroconta,codmacta, callback) {
     var cobros = null;
     var sql = "SELECT sum(impvenci + coalesce(gastos,0) -coalesce(impcobro,0))  ";
-    sql += " FROM cobros WHERE codmacta =  ? ";
+    sql += " FROM ariconta" + numeroconta + ".cobros WHERE codmacta =  ? ";
         sql = mysql.format(sql, [codmacta]);
 
     var connection = conector.getConnectionConta();

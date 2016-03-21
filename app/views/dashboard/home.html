@@ -60,14 +60,14 @@
                                 <tr>
                                     <th>Cuenta</th>
                                     <th>Descripcion</th>
-                                    <th>Saldo</th>
+                                    <th align="right">Saldo</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="odd gradeX" ng-repeat="cta in CtaBancos">
                                     <td>{{cta.codmacta}}</td>
                                     <td>{{cta.nommacta}}</td>
-                                    <td>{{cta.saldo}}</td>
+                                    <td align="right">{{cta.saldo | number:2}} €</td>
                                 </tr>
                             </tbody>
                         </table>
